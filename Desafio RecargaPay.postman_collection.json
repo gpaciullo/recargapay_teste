@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "8fe244d1-2640-4c48-9f0f-65514e3d0b7b",
+		"name": "Desafio RecargaPay",
+		"description": "Casos de teste referente ao desafio recargapay.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f247ba5-bd7a-4a93-b54c-37472a59d8fe",
+						"exec": [
+							"//CT01 - Validar se o código de retorno é de sucesso",
+							"pm.test(\"Verificar se o status code é igual a 200 (sucesso)\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//CT02 - Validar se o BODY não está vazio/nullo",
+							"pm.test(\"Validar se o body não é nulo/vazio\", function () {",
+							"    pm.responseBody!==null;",
+							"    pm.response.responseSize > 0",
+							"    pm.response.to.be.withBody;",
+							"});",
+							"",
+							"//CT03 - Verificar o tempo de resposta da requisição (performance)",
+							"pm.test(\"Verificar se o tempo de resposta da requisição é inferior a 300 milisegundos\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});",
+							"",
+							"//CT04 - Validar se todos os campos do Header estão presentes",
+							"pm.test(\"Validar campos do Header\", function () {",
+							"    pm.response.to.have.header(\"Date\");",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.have.header(\"Transfer-Encoding\");",
+							"    pm.response.to.have.header(\"X-Powered-By\");",
+							"    pm.response.to.have.header(\"Vary\");",
+							"    pm.response.to.have.header(\"Access-Control-Allow-Credentials\");",
+							"    pm.response.to.have.header(\"Cache-Control\");",
+							"    pm.response.to.have.header(\"Pragma\");    ",
+							"    pm.response.to.have.header(\"Expires\");",
+							"    pm.response.to.have.header(\"X-Content-Type-Options\");",
+							"    pm.response.to.have.header(\"Etag\");",
+							"    pm.response.to.have.header(\"Via\");",
+							"    pm.response.to.have.header(\"CF-Cache-Status\");",
+							"    pm.response.to.have.header(\"Age\");",
+							"    pm.response.to.have.header(\"Server\");",
+							"    pm.response.to.have.header(\"CF-RAY\");",
+							"    pm.response.to.have.header(\"Connection\");",
+							"    pm.response.to.have.header(\"Content-Encoding\");",
+							"",
+							"});",
+							"",
+							"//CT05 - Verificar se o Response é um Json",
+							"pm.test(\"Verificar se o response é um arquivo do tipo Json\", function() {",
+							"    ",
+							"    pm.response.to.be.json;",
+							"            ",
+							"})",
+							"",
+							"//CT06 - Validar se o title do último post está correto",
+							"pm.test('Validar o conteúdo do postId=100', function () {",
+							"    for(var post in pm.response.json()){",
+							"        if(post.userId == 100){",
+							"            if(post.title == 'at nam consequatur ea labore ea harum'){",
+							"                return true;",
+							"            }",
+							"            return false;",
+							"        }",
+							"    }",
+							"    return false;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://jsonplaceholder.typicode.com/posts",
+					"protocol": "http",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Método GET e casos de teste relacionados."
+			},
+			"response": []
+		},
+		{
+			"name": "POST Enviando as informações corretamente Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5eeab58f-dc22-4b84-9d8d-63ef871896bc",
+						"exec": [
+							"//CT01 - Validar se o código de retorno é de sucesso para o arquivo inserido",
+							"pm.test(\"Verificar se o status code é igual a 201 (sucesso)\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"//CT02 - Validar se o BODY não está vazio/nullo",
+							"pm.test(\"Validar se o body não é nulo/vazio\", function () {",
+							"    pm.responseBody!==null;",
+							"    pm.response.responseSize > 0",
+							"    pm.response.to.be.withBody;",
+							"});",
+							"",
+							"//CT03 - Verificar o tempo de resposta da requisição (performance)",
+							"pm.test(\"Verificar se o tempo de resposta da requisição é inferior a 500 milisegundos\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"//CT04 - Validar se todos os campos do Header estão presentes",
+							"pm.test(\"Validar campos do Header\", function () {",
+							"    pm.response.to.have.header(\"Date\");",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.have.header(\"Content-Length\");",
+							"    pm.response.to.have.header(\"Connection\");",
+							"    pm.response.to.have.header(\"X-Powered-By\");",
+							"    pm.response.to.have.header(\"Vary\");",
+							"    pm.response.to.have.header(\"Access-Control-Allow-Credentials\");",
+							"    pm.response.to.have.header(\"Cache-Control\");",
+							"    pm.response.to.have.header(\"Pragma\");    ",
+							"    pm.response.to.have.header(\"Expires\");",
+							"    pm.response.to.have.header(\"Access-Control-Expose-Headers\");",
+							"    pm.response.to.have.header(\"Location\");",
+							"    pm.response.to.have.header(\"X-Content-Type-Options\");",
+							"    pm.response.to.have.header(\"Etag\");",
+							"    pm.response.to.have.header(\"Via\");",
+							"    pm.response.to.have.header(\"CF-Cache-Status\");",
+							"    pm.response.to.have.header(\"Server\");",
+							"    pm.response.to.have.header(\"CF-RAY\");",
+							"",
+							"});",
+							"",
+							"",
+							"//CT05 - Verificar se os dados foram aceitos",
+							"pm.test(\"Response must be valid\", function(){",
+							"    pm.response.to.be.nested;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Teste de envio de POST\",\n    \"body\": \"Este é um teste para confirmar a gravação de um post no serviço\",\n    \"userId\": \"1\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://jsonplaceholder.typicode.com/posts",
+					"protocol": "http",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Casos de teste na condição de POST"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Validando um código de retorno diferente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5eeab58f-dc22-4b84-9d8d-63ef871896bc",
+						"exec": [
+							"//CT01 - Validar se o código de retorno é um código de erro",
+							"pm.test(\"Verificar se o status code é igual a 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Teste de envio de POST\",\n    \"body\": \"Este é um teste para confirmar a gravação de um post no serviço\",\n    \"userId\": \"1\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://jsonplaceholder.typicode.com/posts",
+					"protocol": "http",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Validar um código de retorno diferente de 201"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Enviando dados inexistentes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5eeab58f-dc22-4b84-9d8d-63ef871896bc",
+						"exec": [
+							"//CT01 - Teste negativo, deve ser retornado um código de erro",
+							"pm.test(\"Verificar se o status code é igual a 401, que corresponde a erro\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"erro\": \"Teste de envio de POST\",\n    \"inexistente\": \"Este é um teste para confirmar a gravação de um post no serviço\",\n    \"codigo\": \"1\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://jsonplaceholder.typicode.com/posts",
+					"protocol": "http",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Enviar um dado que não existe nos campos"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Enviando todos os dados vazios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5eeab58f-dc22-4b84-9d8d-63ef871896bc",
+						"exec": [
+							"//CT01 - Teste negativo, deve ser retornado um código de erro",
+							"pm.test(\"Verificar se o status code é igual a 403, que corresponde a erro\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"\",\n    \"body\": \"\",\n    \"userId\": \"\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://jsonplaceholder.typicode.com/posts",
+					"protocol": "http",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Enviar os dados vazios no body"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
